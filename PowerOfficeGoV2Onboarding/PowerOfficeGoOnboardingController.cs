@@ -22,7 +22,7 @@ public class PowerOfficeGoOnboardingController : ControllerBase
     [HttpGet(OnboardingCallbackRoute)]
     public async Task<IActionResult> Authenticate([FromQuery] string status, [FromQuery] string token, [FromQuery] Guid onboardingSessionToken)
     {
-        await _onboardingFinalizer.FinalizeOnboardingAsync(onboardingSessionToken, token, status);
-        return Ok();
+        var redirectUrl = await _onboardingFinalizer.FinalizeOnboardingAsync(onboardingSessionToken, token, status);
+        return Redirect(redirectUrl);
     }
 }
