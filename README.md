@@ -47,8 +47,10 @@ public class YourService
             "application_key",
             "subscription_key",
             "client_org_number",
+            // This base url is used for the onboarding controller included in this project.
             "https://your-api.com",
-            "https://your-frontend.com/client-onboarding");
+            // This can be either your api or your frontend, depending on your needs
+            "https://your-url.com/client-onboarding");
         
         // Redirect your user to response.RedirectUri
     }
@@ -56,22 +58,22 @@ public class YourService
 ```
 
 ### Handling completed onboarding sessions
-When the onboarding session completes (succeeds or fails), the user will be redirected to the url you provided, https://your-frontend.com/client-onboarding in the above example.
+When the onboarding session completes (succeeds or fails), the user will be redirected to the url you provided, https://your-url.com/client-onboarding in the above example.
 
 #### Failure
 If the onboarding failed, the errorMessage query parameter will be included.
 
-For example: https://your-frontend.com/client-onboarding?errorMessage=IntegrationBlocked
+For example: https://your-url.com/client-onboarding?errorMessage=IntegrationBlocked
 
 #### Success
 If the onboarding succeeds, the following query parameters will be included: clientKeys, clientNames, clientOrganizationNumbers, userEmail.
 
 Notice that all values except userEmail can be comma separated lists, in case multiple clients were onboarded.
 
-For example (but url encoded): [https://your-frontend.com/client-onboarding?clientKeys=f1ba4158-7bbc-4ecc-a68d-1a8ac42c5480,A34DA14A-9D3E-4736-9867-E3A23EE7EE7E&clientNames=ABC AS,XYZ AS&clientOrganizationNumbers=980386465,12345678&userEmail=jon.doe@company.no]()
+For example (but url encoded): [https://your-url.com/client-onboarding?clientKeys=f1ba4158-7bbc-4ecc-a68d-1a8ac42c5480,A34DA14A-9D3E-4736-9867-E3A23EE7EE7E&clientNames=ABC AS,XYZ AS&clientOrganizationNumbers=980386465,12345678&userEmail=jon.doe@company.no]()
 
 #### Passing additional information
-If you need to pass additional information to the frontend on redirect, you can do this by including query parameters in the redirect url.
+If you need to pass additional information on redirect, you can do this by including query parameters in the redirect url.
 
 For instance:
 
@@ -81,8 +83,8 @@ var response = await powerOfficeGoOnboardingService.BeginOnbardingAsync(
     "subscription_key",
     "client_org_number",
     "https://your-api.com",
-    "https://your-frontend.com/client-onboarding?myIdentifier=123");
+    "https://your-url.com/client-onboarding?myIdentifier=123");
 ```
 
 The user will then be redirected to the following url when onboarding completes:
-[https://your-frontend.com/client-onboarding?myIdentifier=123&clientKeys=...]()
+[https://your-url.com/client-onboarding?myIdentifier=123&clientKeys=...]()

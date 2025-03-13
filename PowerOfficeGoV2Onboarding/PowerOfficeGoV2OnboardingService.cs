@@ -33,12 +33,18 @@ public interface IPowerOfficeGoOnboardingService
     /// </param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<IOnboardingInitiatePostApiResponse> BeginOnbardingAsync(Guid applicationKey, string subscriptionKey, string clientOrgNumber, string apiBaseUrl, string onOnboardingCompleteRedirectUrl, CancellationToken cancellationToken = default);
+    Task<IOnboardingInitiatePostApiResponse> BeginOnbardingAsync(
+        Guid applicationKey,
+        string subscriptionKey,
+        string clientOrgNumber,
+        string apiBaseUrl,
+        string onOnboardingCompleteRedirectUrl,
+        CancellationToken cancellationToken = default);
 }
 
-internal interface IPowerofficeGoOnboardingFinalizingService
+public interface IPowerofficeGoOnboardingFinalizingService
 {
-    Task<string> FinalizeOnboardingAsync(Guid onboardingSessionToken, string onboardingToken, string onboardingStatus, CancellationToken cancellationToken = default);
+    Task<string> FinalizeOnboardingAsync(Guid onboardingSessionToken, string? onboardingToken, string onboardingStatus, CancellationToken cancellationToken = default);
 }
 
 internal class PowerOfficeGoOnboardingService : IPowerOfficeGoOnboardingService, IPowerofficeGoOnboardingFinalizingService
@@ -72,7 +78,7 @@ internal class PowerOfficeGoOnboardingService : IPowerOfficeGoOnboardingService,
             cancellationToken);
     }
 
-    public async Task<string> FinalizeOnboardingAsync(Guid onboardingSessionToken, string onboardingToken, string onboardingStatus, CancellationToken cancellationToken = default)
+    public async Task<string> FinalizeOnboardingAsync(Guid onboardingSessionToken, string? onboardingToken, string onboardingStatus, CancellationToken cancellationToken = default)
     {
         var onboardingSession = CompleteOnboardingSessionToken(onboardingSessionToken);
         

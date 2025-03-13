@@ -14,13 +14,13 @@ public class PowerOfficeGoOnboardingController : ControllerBase
     
     private readonly IPowerofficeGoOnboardingFinalizingService _onboardingFinalizer;
 
-    internal PowerOfficeGoOnboardingController(IPowerofficeGoOnboardingFinalizingService onboardingFinalizer)
+    public PowerOfficeGoOnboardingController(IPowerofficeGoOnboardingFinalizingService onboardingFinalizer)
     {
         _onboardingFinalizer = onboardingFinalizer;
     }
     
     [HttpGet(OnboardingCallbackRoute)]
-    public async Task<IActionResult> Authenticate([FromQuery] string status, [FromQuery] string token, [FromQuery] Guid onboardingSessionToken)
+    public async Task<IActionResult> Authenticate([FromQuery] string status, [FromQuery] string? token, [FromQuery] Guid onboardingSessionToken)
     {
         var redirectUrl = await _onboardingFinalizer.FinalizeOnboardingAsync(onboardingSessionToken, token, status);
         return Redirect(redirectUrl);
