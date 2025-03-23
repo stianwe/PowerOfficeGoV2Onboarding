@@ -12,12 +12,12 @@
         <PackageReleaseNotes>Update PowerOfficeGoV2 dependency version.
 Minor bug fixes.</PackageReleaseNotes>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>1.0.2</Version>
+        <Version>1.0.3</Version>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.3.0" />
-      <PackageReference Include="PowerOfficeGoV2" Version="1.2.2" />
+      <PackageReference Include="PowerOfficeGoV2" Version="1.2.3" />
     </ItemGroup>
     
     <ItemGroup>
